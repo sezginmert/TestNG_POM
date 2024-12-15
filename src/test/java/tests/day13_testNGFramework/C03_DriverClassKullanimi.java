@@ -3,45 +3,48 @@ package tests.day13_testNGFramework;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 public class C03_DriverClassKullanimi {
 
+    // uc farkli test method'u olusturun
+    // testotomasyonu, wisequarter ve bestbuy sitelerine gidip
+    // url'in bu kelimeleri icerdigini test edin
+    // ve windowlari kapatin
+
     @Test
     public void testotomasyonuTest(){
+        Driver.getDriver().get("https://www.testotomasyonu.com");
 
-        Driver.getDriver().get("https://testotomasyonu.com");
-
-        String expctedUrl = "testotomasyonu";
+        String expectedUrlIcerik = "testotomasyonu";
         String actualUrl = Driver.getDriver().getCurrentUrl();
 
-        Assert.assertTrue(actualUrl.contains(expctedUrl));
-
+        Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
+        ReusableMethods.bekle(1);
         Driver.quitDriver();
     }
 
     @Test
     public void wisequarterTest(){
+        Driver.getDriver().get("https://www.wisequarter.com");
 
-        Driver.getDriver().get("https://wisequarter.com");
-
-        String expctedUrl = "wisequarter";
+        String expectedUrlIcerik = "wisequarter";
         String actualUrl = Driver.getDriver().getCurrentUrl();
 
-        Assert.assertTrue(actualUrl.contains(expctedUrl));
-
+        Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
+        ReusableMethods.bekle(1);
         Driver.quitDriver();
     }
 
     @Test
     public void bestbuyTest(){
+        Driver.getDriver().get("https://www.bestbuy.com");
 
-        Driver.getDriver().get("https://bestbuy.com");
-
-        String expctedUrl = "bestbuy";
+        String expectedUrlIcerik = "bestbuy";
         String actualUrl = Driver.getDriver().getCurrentUrl();
 
-        Assert.assertTrue(actualUrl.contains(expctedUrl));
-
+        Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
+        ReusableMethods.bekle(1);
         Driver.quitDriver();
     }
 }

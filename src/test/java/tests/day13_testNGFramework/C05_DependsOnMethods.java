@@ -9,45 +9,80 @@ import utilities.Driver;
 
 public class C05_DependsOnMethods {
 
-    @Test(priority = 0)
-    public void anasayfaTest(){
-        Driver.getDriver().get("https://www.testotomasyonua.com");
-        String expectedUrlIcerik = "testotomasyonu";
-        String actualUrlIcerik = Driver.getDriver().getCurrentUrl();
+    // 3 farkli test methodu olusturup, asagidaki gorevleri yapin
+    // 1- testotomasyonu anasayfaya gidip url'in testotomasyonu icerdigini test edin
+    // 2- phone icin arama yapip urun bulunabildigini test edin
+    // 3- ilk urunu tiklayip, urun isminde case sensitive olmadan "phone" bulundugunu test edin
 
-        Assert.assertTrue(actualUrlIcerik.contains(expectedUrlIcerik));
+    /*
+        dependsOnMethods = "anasayfaTesti"
+
+        1- siralama icin degil, method'lari birbirine baglamak icin kullanilir
+           eger anasayfa testi calisip PASSED olmazsa
+           phoneAramaTestini calistirmanin hicbir anlami olmayacaksa
+           dependsOnMethods = "anasayfaTesti" yazabiliriz
+
+        2- her test method'u bagimsiz olarak calistirilabilir
+           ancak dependsOnMethods ile calismasi baska class'in calismasina baglanan bir method
+           bagimsiz olarak calistirilmak istendiginde
+           ONCE bagli oldugu method'u calistirir,
+           O method calisip PASSED olursa, kendisi de calisir
+
+           ANCAAAKKK bu sadece 2 method icin gecerlidir
+           eger 3 method bu ornekte oldugu gibi birbirine bagli ise
+           3.method'u bagimsiz calistirmak istedigimizde tum method'lar calismaz
+            No tests were found ==> calistirilacak Test bulunamadi der
+        3- Her ne kadar siralama icin kullanilmasa da
+           dependsOnmethod kullanmis olan bir method'a sira geldiginde
+           once bagli oldugu method'un calismasini saglayacagi icin
+           otomatik olarak bir siralama da yapmis olur
+     */
+
+
+    @Test
+    public void anasayfaTesti(){
+        // 1- testotomasyonu anasayfaya gidip
+        Driver.getDriver().get("https://www.testotomasyonu.com");
+
+        // url'in testotomasyonu icerdigini test edin
+        String expectedUrlIcerik = "testotomasyonu";
+        String actualUrl = Driver.getDriver().getCurrentUrl();
+
+        Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
     }
 
-    @Test(priority = 1, dependsOnMethods = "anasayfaTest")
-    public void phoneAramaTest(){
-
+    @Test(dependsOnMethods = "anasayfaTesti")
+    public void phoneAramaTesti(){
+        // 2- phone icin arama yapip
         WebElement aramaKutusu = Driver.getDriver().findElement(By.id("global-search"));
-
         aramaKutusu.sendKeys("phone" + Keys.ENTER);
 
-        WebElement urunVarMi = Driver.getDriver().findElement(By.className("product-count-text"));
+        // urun bulunabildigini test edin
+        WebElement aramaSonucuElementi = Driver.getDriver().findElement(By.className("product-count-text"));
 
-        int bulunanUrunString = Integer.parseInt(urunVarMi.getText().replaceAll("\\D",""));
+        String unExpectedSonuc = "0 Products Found";
+        String actualSonuc = aramaSonucuElementi.getText();
 
-        int sonucSayisi = bulunanUrunString;
+        Assert.assertNotEquals(actualSonuc,unExpectedSonuc);
 
-        Assert.assertEquals(sonucSayisi,4);
     }
 
-    @Test(priority = 2,dependsOnMethods = "phoneAramaTest")
-    public void urunIsimTesti(){
+    @Test(dependsOnMethods = "phoneAramaTesti")
+    public void ilkUrunIsimTesti(){
+        // 3- ilk urunu tiklayip,
+        Driver.getDriver().findElement(By.xpath("(//*[@class='prod-img'])[1]"))
+                .click();
 
-        Driver.getDriver().findElement(By.xpath("(//*[@class='prod-img'])[1]")).click();
+        // urun isminde case sensitive olmadan "phone" bulundugunu test edin
 
-        WebElement urunIsmiSensitive = Driver.getDriver().findElement(By.xpath(" //*[@class=' heading-sm mb-4']"));
+        String expectedIsimIcerik = "phone";
 
-        String expectedIcerik = "phone";
-        String actualIcerik = urunIsmiSensitive.getText().toLowerCase();
+        String actualUrunIsmi = Driver.getDriver().findElement(By.xpath("//div[@class=' heading-sm mb-4']"))
+                .getText()
+                .toLowerCase();
 
-        Assert.assertTrue(actualIcerik.contains(expectedIcerik));
+        Assert.assertTrue(actualUrunIsmi.contains(expectedIsimIcerik));
 
         Driver.quitDriver();
-
-
     }
 }
