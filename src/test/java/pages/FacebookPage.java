@@ -12,7 +12,7 @@ public class FacebookPage {
     }
 
     @FindBy(xpath = "//input[ @id='email']")
-    public WebElement emmailKutusu;
+    public WebElement emailKutusu;
 
     @FindBy(id = "pass")
     public WebElement passwordKutusu;
