@@ -11,17 +11,17 @@ public class WebDriverUniversityPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//h1[text()='LOGIN PORTAL']")
-    public WebElement loginButton;
+    @FindBy(xpath = "//*[.='LOGIN PORTAL']")
+    public WebElement loginPortalElementi;
 
-    @FindBy(id = "text")
-    public WebElement userName;
+    @FindBy(xpath = "//input[@id='text']")
+    public WebElement usernameKutusu;
 
-    @FindBy(id = "password")
-    public WebElement password;
+    @FindBy(xpath = "//input[@id='password']")
+    public WebElement passwordKutusu;
 
-    @FindBy(id = "login-button")
-    public WebElement loginClick;
+    @FindBy(xpath = "//button[@id='login-button']")
+    public WebElement loginButonu;
 
 
 }

@@ -1,16 +1,14 @@
 package tests.day13_testNGFramework;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.TestOtomasyonuPage;
+import pages.TestotomasyonuPage;
 import utilities.Driver;
 
 public class C06_PageClassKullanimi {
 
-    TestOtomasyonuPage testOtomasyonuPage = new TestOtomasyonuPage();
+    TestotomasyonuPage testOtomasyonuPage = new TestotomasyonuPage();
 
     @Test
     public void anasayfaTesti(){

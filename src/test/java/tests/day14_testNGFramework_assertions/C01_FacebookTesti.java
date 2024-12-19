@@ -2,42 +2,55 @@ package tests.day14_testNGFramework_assertions;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.FacebookPage;
+import pages.TestotomasyonuFormPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
 public class C01_FacebookTesti {
 
-    @Test
-    public void negatifLoginTesti(){
-        //1 - https://www.facebook.com/ adresine gidin
-        Driver.getDriver().get("https://www.facebook.com/");
+    @Test(groups = "smoke")
+    public void dropdownTesti(){
+        //1 - https://testotomasyonu.com/form adresine gidin
+        Driver.getDriver().get("https://testotomasyonu.com/form");
 
-        //2- Cookies cikiyorsa kabul edin
-        Driver.getDriver().findElement(By.xpath("(//span[ text()='Allow all cookies'])[2]"))
-                .click();
+        TestotomasyonuFormPage testotomasyonuFormPage = new TestotomasyonuFormPage();
 
-        //3- POM’a uygun olarak email, sifre kutularini ve giris yap butonunu locate edin
-        //4- Faker class’ini kullanarak email ve sifre degerlerini yazdirip, giris butonuna basin
+        //2- Dogum tarihi gun seçeneğinden index kullanarak 5’i secin
+        Select selectGun = new Select(testotomasyonuFormPage.gunDdm);
+        selectGun.selectByIndex(5);
 
-        FacebookPage facebookPage = new FacebookPage();
-        Faker faker = new Faker();
+        //3- Dogum tarihi ay seçeneğinden value kullanarak Nisan’i secin
+        Select selectAy = new Select(testotomasyonuFormPage.ayDdm);
+        selectAy.selectByValue("nisan");
 
-        facebookPage.emailKutusu.sendKeys(faker.internet().emailAddress());
+        //4- Dogum tarihi yil seçeneğinden visible text kullanarak 1990’i secin
+        Select selectYil = new Select(testotomasyonuFormPage.yilDdm);
+        selectYil.selectByVisibleText("1990");
 
-        facebookPage.passwordKutusu.sendKeys(faker.internet().password());
+        //5- Secilen değerleri konsolda yazdirin
+        System.out.println(
+                selectGun.getFirstSelectedOption().getText()+ " " +
+                        selectAy.getFirstSelectedOption().getText() + " " +
+                        selectYil.getFirstSelectedOption().getText()
+        );
 
-        facebookPage.loginButonu.click();
 
-        //5- Basarili giris yapilamadigini test edin
+        //6- Ay dropdown menüdeki tum değerleri(value) yazdırın
 
-        Assert.assertTrue(facebookPage.loginButonu.isDisplayed());
+        System.out.println(ReusableMethods.stringListeyeDonustur(selectAy.getOptions()));
 
-        ReusableMethods.bekle(2);
+        //7- Ay Dropdown menusunun boyutunun 13 olduğunu test edin
+
+        int expectedBoyut = 13;
+        int actualBoyut = selectAy.getOptions().size();
+
+        Assert.assertEquals(actualBoyut,expectedBoyut);
+
+
         Driver.quitDriver();
-
-
     }
 }

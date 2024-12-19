@@ -1,23 +1,18 @@
 package tests.day14_testNGFramework_assertions;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.TestOtomasyonuFormPage;
+import pages.TestotomasyonuFormPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class C02_DropDownTesti {
 
 
     @Test
     public void dropdownTesti(){
-        TestOtomasyonuFormPage testOtomasyonuFormPage = new TestOtomasyonuFormPage();
+        TestotomasyonuFormPage testOtomasyonuFormPage = new TestotomasyonuFormPage();
 
 
         //1 - https://testotomasyonu.com/form adresine gidin

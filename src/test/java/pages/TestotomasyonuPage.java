@@ -1,12 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class TestOtomasyonuPage {
+public class TestotomasyonuPage {
 
      /*
         Page class'larinda locate yapabilmesi icin
@@ -26,7 +25,7 @@ public class TestOtomasyonuPage {
         icerisinde initElements() method'u ile WebDriver'i tanitmak olacaktir.
      */
 
-    public TestOtomasyonuPage(){
+    public TestotomasyonuPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
@@ -35,6 +34,7 @@ public class TestOtomasyonuPage {
 
     @FindBy(className = "product-count-text")
     public WebElement aramaSonucuElementi;
+
 
     @FindBy(xpath = "(//*[@class='prod-img'])[1]")
     public WebElement ilkUrunElementi;
@@ -56,6 +56,8 @@ public class TestOtomasyonuPage {
 
     @FindBy(xpath = "//span[.='Logout']")
     public WebElement logoutButonu;
+
+
 
 
 }

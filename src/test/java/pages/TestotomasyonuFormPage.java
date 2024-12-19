@@ -5,9 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class TestOtomasyonuFormPage {
+public class TestotomasyonuFormPage {
 
-    public TestOtomasyonuFormPage(){
+    public TestotomasyonuFormPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
