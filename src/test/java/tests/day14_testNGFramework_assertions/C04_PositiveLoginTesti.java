@@ -9,7 +9,7 @@ import utilities.ReusableMethods;
 
 public class C04_PositiveLoginTesti {
 
-    @Test (groups = {"smoke","regression","E2E"})
+    @Test
     public void positiveLoginTesti(){
         /*
             Testlerimizi DINAMIK yapmak
