@@ -12,7 +12,7 @@ import utilities.ReusableMethods;
 
 public class C01_FacebookTesti {
 
-    @Test(groups = "smoke")
+    @Test
     public void dropdownTesti(){
         //1 - https://testotomasyonu.com/form adresine gidin
         Driver.getDriver().get("https://testotomasyonu.com/form");
