@@ -21,6 +21,7 @@ public class C05_DinamikNegativeLoginTesti {
 
     @Test
     public void gecersizPasswordTesti(){
+        testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
         //2- account linkine basin
@@ -38,6 +39,7 @@ public class C05_DinamikNegativeLoginTesti {
 
     @Test
     public void gecersizEmailTesti(){
+        testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
         //2- account linkine basin
@@ -50,11 +52,13 @@ public class C05_DinamikNegativeLoginTesti {
         testotomasyonuPage.loginButonu.click();
         //5- Basarili olarak giris yapilamadigini test edin
         Assert.assertTrue(testotomasyonuPage.emailKutusu.isDisplayed());
+        Driver.quitDriver();
 
     }
 
     @Test
     public void gecersizEmailGcersizPasswordTesti(){
+        testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
         //2- account linkine basin
@@ -67,6 +71,7 @@ public class C05_DinamikNegativeLoginTesti {
         testotomasyonuPage.loginButonu.click();
         //5- Basarili olarak giris yapilamadigini test edin
         Assert.assertTrue(testotomasyonuPage.emailKutusu.isDisplayed());
+        Driver.quitDriver();
 
     }
 }
