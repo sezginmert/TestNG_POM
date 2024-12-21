@@ -1,5 +1,8 @@
 package tests.day14_testNGFramework_assertions;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.TestotomasyonuPage;
@@ -35,6 +38,8 @@ public class C04_PositiveLoginTesti {
         // 2- account linkine basin
 
         TestotomasyonuPage testotomasyonuPage = new TestotomasyonuPage();
+        Actions actions = new Actions(Driver.getDriver());
+        ReusableMethods.bekle(1);
         testotomasyonuPage.accountLinki
                 .click();
 
@@ -54,13 +59,16 @@ public class C04_PositiveLoginTesti {
 
 
         // logout olun
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         testotomasyonuPage.logoutButonu
                 .click();
+
+        Driver.quitDriver();
     }
 
 
-    @Test(groups = {"smoke","regression"})
+    @Test
     public void dinamikPositiveLoginTesti(){
 
         // 1- https://www.testotomasyonu.com/ anasayfasina gidin
@@ -69,6 +77,7 @@ public class C04_PositiveLoginTesti {
         ReusableMethods.bekle(1);
         // 2- account linkine basin
         TestotomasyonuPage testotomasyonuPage = new TestotomasyonuPage();
+        Actions actions = new Actions(Driver.getDriver());
         testotomasyonuPage.accountLinki
                 .click();
 
@@ -86,6 +95,8 @@ public class C04_PositiveLoginTesti {
         Assert.assertTrue(testotomasyonuPage.logoutButonu.isDisplayed());
 
         ReusableMethods.bekle(1);
+
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
         // logout olun
         testotomasyonuPage.logoutButonu
                 .click();

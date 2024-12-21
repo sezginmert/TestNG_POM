@@ -33,7 +33,7 @@ public class C03_SoftAssert {
         zeroPage.anaSayfaSignInButton.click();
 
         // 4. Login kutusuna “username” yazin
-        zeroPage.loginKutusu.sendKeys(ConfigReader.getProperty("zeroGecerliUsername"));
+        zeroPage.loginKutusu.sendKeys(ConfigReader.getProperty("zeroGecerliUserName"));
 
         // 5. Password kutusuna “password” yazin
         zeroPage.passwordKutusu.sendKeys(ConfigReader.getProperty("zeroGecerliPassword"));

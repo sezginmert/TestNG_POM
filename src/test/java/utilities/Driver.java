@@ -16,12 +16,10 @@ public class Driver {
         // Constructor'i gorunur yapip, kimsenin erisememesi icin private isaretliyoruz
     }
 
-
     public static WebDriver driver;
 
     public static WebDriver getDriver(){
-
-         /*
+        /*
             Bu method'u her kullandigimizda new ChromeDriver(); calisinca
             yeni bir browser aciliyor
 
@@ -41,6 +39,7 @@ public class Driver {
             ona ait bir WebDriver olusturmasini saglayalim
          */
 
+
         String calisacakBrowser = ConfigReader.getProperty("browser");
 
         if (driver == null){
@@ -50,28 +49,33 @@ public class Driver {
                 case "safari" :
                     driver = new SafariDriver();
                     break;
+
                 case "edge" :
                     driver = new EdgeDriver();
                     break;
+
                 case "firefox" :
                     driver = new FirefoxDriver();
                     break;
-                default :
+
+                default:
                     driver = new ChromeDriver();
+
             }
 
-            driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         }
 
 
         return driver;
     }
 
+
     public static void quitDriver(){
-        ReusableMethods.bekle(2);
-        driver.quit();
-        driver = null;
+        driver.quit(); // acik olan browser'lari kapatir
+        driver=null; // bu class'daki driver objesine null degeri atayarak
+        // yeni browser acilmasina imkan tanir
     }
 }

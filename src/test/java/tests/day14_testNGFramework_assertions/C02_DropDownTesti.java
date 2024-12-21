@@ -37,6 +37,7 @@ public class C02_DropDownTesti {
         int actualSonuc = selectAy.getOptions().size();
 
         Assert.assertEquals(actualSonuc,expectedSonuc);
+        Driver.quitDriver();
 
     }
 }
