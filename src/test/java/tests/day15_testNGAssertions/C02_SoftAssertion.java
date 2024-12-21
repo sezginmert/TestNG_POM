@@ -9,6 +9,7 @@ import utilities.Driver;
 
 public class C02_SoftAssertion {
 
+    @Test(groups = "smoke")
     public void softAssertionTesti(){
 
         // 1- testotomasyonu anasayfaya gidip

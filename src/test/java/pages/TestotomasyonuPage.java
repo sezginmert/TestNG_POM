@@ -58,6 +58,4 @@ public class TestotomasyonuPage {
     public WebElement logoutButonu;
 
 
-
-
 }

@@ -19,7 +19,7 @@ public class C05_DinamikNegativeLoginTesti {
 
     TestotomasyonuPage testotomasyonuPage = new TestotomasyonuPage();
 
-    @Test
+    @Test(groups = "smoke")
     public void gecersizPasswordTesti(){
         testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
@@ -37,7 +37,7 @@ public class C05_DinamikNegativeLoginTesti {
         Driver.quitDriver();
     }
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     public void gecersizEmailTesti(){
         testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
@@ -56,8 +56,8 @@ public class C05_DinamikNegativeLoginTesti {
 
     }
 
-    @Test
-    public void gecersizEmailGcersizPasswordTesti(){
+    @Test(groups = {"smoke","E2E"})
+    public void gecersizEmailGecersizPasswordTesti(){
         testotomasyonuPage = new TestotomasyonuPage();
         //1- https://www.testotomasyonu.com/ anasayfasina gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));

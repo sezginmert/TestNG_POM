@@ -12,7 +12,7 @@ import utilities.ReusableMethods;
 
 public class C04_PositiveLoginTesti {
 
-    @Test
+    @Test(groups = {"smoke","regression","E2E"})
     public void positiveLoginTesti(){
         /*
             Testlerimizi DINAMIK yapmak
@@ -68,7 +68,7 @@ public class C04_PositiveLoginTesti {
     }
 
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     public void dinamikPositiveLoginTesti(){
 
         // 1- https://www.testotomasyonu.com/ anasayfasina gidin

@@ -10,7 +10,7 @@ import utilities.ReusableMethods;
 public class C02_DropDownTesti {
 
 
-    @Test
+    @Test(groups = "smoke")
     public void dropdownTesti(){
         TestotomasyonuFormPage testOtomasyonuFormPage = new TestotomasyonuFormPage();
 
