@@ -9,7 +9,7 @@
 <suite name="E2E suite">
     <test name="E2E Testi">
         <packages>
-            <package name="tests.*"></package>
+            <package name="tests.day16_htmlReports"></package>
         </packages>
     </test>
 </suite>
