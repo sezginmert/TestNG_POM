@@ -38,8 +38,8 @@
 
     </test>
 
-    <test name="Firefox ile calisacak classlar">
-        <parameter name="kullanilacakBrowser" value="firefox"></parameter>
+    <test name="Edge ile calisacak classlar">
+        <parameter name="kullanilacakBrowser" value="edge"></parameter>
 
         <packages>
             <package name="tests.day17_CrossBrowserCalistirilacakTestler"></package>
