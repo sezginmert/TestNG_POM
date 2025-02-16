@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        MAVEN_HOME = 'C:\\Program Files\\apache-maven-3.9.9'
+        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Git repository'den kodu çekiyoruz
+                git 'https://github.com/username/repository.git'
+            }
+        }
+
+        stage('Maven Clean & Install') {
+            steps {
+                // Maven ile projeyi derleyip test ediyoruz
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                // Selenium testlerini başlatıyoruz
+                sh 'mvn test'
+            }
+        }
+
+        stage('Publish Test Results') {
+            steps {
+                // Test sonuçlarını raporluyoruz
+                junit '**/target/test-*.xml' // Test sonuçlarını okuyup raporlama
+            }
+        }
+    }
+
+    post {
+        always {
+            // Pipeline bitince yapılacak işler
+            echo 'Pipeline completed!'
+        }
+    }
+}
